@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+	<div>
+		<h2>{{ content }}</h2>
+<div class="picholder">
+<div class="innovationpic">
+<img title="csi" class="home" src="/media/images/csi.jpg" alt="csi" width="500" height="219" /> </div>
+<div class="latest"> latest projects <div class="theprojects">
+    {% for event in recent_projects %}
+        <a href="/projects/{{event.project.id}}">{{event.project.name}}</a>
+    {% endfor %}
+</div></div>
+</div>
+<div class="introduction" id="introduction">
+<p>World-changers, you belong here.</p> 
+<p>At RIT&#8217;s new Center for Student Innovation, diverse teams collaborative on multi-disciplinary problems.  Designers and entrepreneurs, activists and artists, engineers and film-makers, students, faculty, and community members.  Together we do what none of us can do individually.</p> 
+<p>At our <a href="http://maps.google.com/maps?hl=en&amp;q=RIT+Center+for+Student+Innovation&amp;ie=UTF8&amp;z=15&amp;iwloc=A" target="_blank">physical location</a>, we host a range of events and activities that  celebrate, inspire, and advance collaborative innovation.</p> 
+<p>At our virtual location (<a href="http://Innovation.RIT.edu">http://Innovation.RIT.edu</a>), you can participate and <strong>get involved </strong>and be involved by  signing up for courses, browsing and joining projects,  teaching and learning from your peers.   <a href="http://csi.asktherelic.com/wordpress/contact/" target="_blank">Keep in touch</a>!</p> 
+</div>
+
+	</div>
+{% endblock %}
+
+

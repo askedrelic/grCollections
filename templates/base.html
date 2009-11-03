@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="/media/css/innovation.css" />
+        <script type="text/javascript" src="/media/js/jquery.js"></script>
+        <title>Collections</title>
+        {% block head %}{% endblock %}
+    </head>
+    <body  {% block bodytag %}{% endblock %} >
+        <div id="title">
+            <h1>{% block title %}{% endblock %}</h1>
+        </div>
+        {% block content %}{% endblock %}
+    </body>
+</html>
