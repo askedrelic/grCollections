@@ -7,7 +7,9 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^$', 'index.views.index'),
+    (r'^signup/$', 'reader.views.index'),
     (r'^admin/(.*)', admin.site.root),
+    (r'^echo/$', 'reader.views.echo'),
 )
 
 #Let django host static content during development.
