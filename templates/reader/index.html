@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block head %}
+<script type="text/javascript" src="/media/js/jquery.js"></script>
+<script type="text/javascript" src="/media/js/reader.js"></script>
 {% endblock %}
 
 {% block title %}
@@ -8,6 +10,13 @@
 {% endblock %}
 
 {% block content %}
-stuff
+<div id="userfeedlist">
+    <ul>
+    </ul>
+</div>
+<div id="newfeedlist">
+    <ul>
+    </ul>
+</div>
 {% endblock %}
 

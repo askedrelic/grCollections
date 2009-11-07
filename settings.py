@@ -1,8 +1,8 @@
 # Django settings for grCollections project.
 import os
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))          
-ROJECT_DIR = BASE_DIR                                         
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+ROJECT_DIR = BASE_DIR
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
