@@ -41,6 +41,18 @@ ADMIN_MEDIA_PREFIX = '/admedia/'
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'brk(j6bpvx%fh%d5_2_7_^sna$x+ny-20p@52dms*j)%8sm0g#'
 
+DEVSERVER_MODULES = (
+    'devserver.modules.sql.SQLRealTimeModule',
+    'devserver.modules.sql.SQLSummaryModule',
+    'devserver.modules.profile.ProfileSummaryModule',
+    'devserver.modules.ajax.AjaxDumpModule',
+
+    # Modules not enabled by default
+    #'devserver.modules.profile.MemoryUseModule',
+    #'devserver.modules.cache.CacheSummaryModule',
+)
+
+
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
@@ -69,6 +81,9 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'devserver',
+    'grCollections.index',
+    'grCollections.reader',
 )
 
 #import local settings
