@@ -6,15 +6,21 @@
 {% endblock %}
 
 {% block title %}
-    Search
+    XXX's google reader feedlist
 {% endblock %}
 
 {% block content %}
+2 pane split window for selecting feeds<br/>
 <div id="userfeedlist">
+    userfeeds
     <ul>
+        {% for feed in user_feed_list %}
+            <li>{{feed}}</li>
+        {% endfor %}
     </ul>
 </div>
 <div id="newfeedlist">
+    new feeds
     <ul>
     </ul>
 </div>
