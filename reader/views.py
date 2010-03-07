@@ -14,6 +14,7 @@ def index(request):
         google = GoogleReader(username, password, 'FeederReader')
     except URLError:
         #handle username/password error
+        #redirect to homepage with error?
         pass
 
     if google.buildSubscriptionList():
