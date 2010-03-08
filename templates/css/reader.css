@@ -2,7 +2,11 @@ html {
     overflow-y: scroll;
 }
 
-.container {
+.spinner {
+    background: url("/media/img/spinner.gif") center no-repeat;
+    height: 32px;
+    width: 100%;
+    display: block;
 }
 
 #title>img {

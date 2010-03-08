@@ -9,15 +9,16 @@
 
 {% block content %}
 2 pane split window for selecting feeds<br/>
-<div id="userfeedlist">
-    userfeeds
+<div class="spinner"></div>
+<div id="userfeedlist" class="span-12">
+        left side userfeeds
     <ul>
         {% for feed in user_feed_list %}
             <li>{{feed}}</li>
         {% endfor %}
     </ul>
 </div>
-<div id="newfeedlist">
+<div id="newfeedlist" class="span-12 last">
     new feeds
     <ul>
     </ul>

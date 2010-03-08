@@ -1,6 +1,6 @@
 /*
  * Reader data loading and GUI manipulation functions.
- * 
+ *
  */
 $(function() {
 
@@ -20,9 +20,12 @@ $(function() {
         };
 
     //display data
+    $('#userfeedlist, #newfeedlist').css({'opacity':0});
+
     setTimeout(function() {
-        feedlist.fadeIn(2000);        
-        
+        $(".spinner").hide();
+        $('#userfeedlist, #newfeedlist').css({'opacity':100});
+        feedlist.fadeIn(2000);
         },2000);
 
 
