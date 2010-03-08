@@ -8,15 +8,23 @@
 {% endblock %}
 
 {% block content %}
-2 pane split window for selecting feeds<br/>
-Toggle order: <br/>
-Toggle categories:<br/>
 <div class="spinner"></div>
+
+<div class="span-13">
+2 pane split window for selecting feeds<br/>
+</div>
+<div class="span-11 last">
+<h3>new feeds</h3>
+</div>
+
 <div id="userfeedlist" class="span-12 colborder">
-    left side userfeeds
+    <div id="userfeed_settings">
+    Toggle order: <br/>
+    Toggle categories:<br/>
+    </div>
     <ul>
         {% for feed in user_feed_list %}
-        <li class="draggable">
+        <li class="borders">
         <strong>{{feed.title}}</strong>
         <span class="alt"><a href="{{feed.url}}">{{feed.url}}</a></span><br/>
         desc?<br/>
@@ -24,10 +32,8 @@ Toggle categories:<br/>
         {% endfor %}
     </ul>
 </div>
-<div id="newfeedlist" class="span-11 last">
-    new feeds
+<div id="newfeedlist" class="span-11 last borders">
     <ul>
     </ul>
 </div>
 {% endblock %}
-

@@ -31,17 +31,15 @@ html {
     padding: 0;
 }
 
-.draggable {
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
+.ui-draggable {
     display: block;
 
     padding: 3px 7px;
     margin: 7px auto;
-    width: 430;
+    width: 400px;
 
-    background: #CCC;
+    border: 1px solid #000000;
+    background: #EEEEEE;
 }
 
 #newfeedlist {
@@ -51,6 +49,14 @@ html {
     height: 800px;
 }
 
-.draghovered {
-    background-color: red;
+/* general styling classes */
+
+.borders {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.ui-drophover {
+    background: #A8EB19;
 }
