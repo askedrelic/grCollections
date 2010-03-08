@@ -21,8 +21,31 @@ html {
     margin: 0px;
 }
 
-
 #content {
     padding-top: 75px;
     background: url("/media/img/header.jpg") top left no-repeat;
+}
+
+#userfeedlist ul {
+    margin: 0;
+    padding: 0;
+}
+
+.draggable {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    display:block;
+
+    padding: 3px 7px;
+    margin: 7px auto;
+    width: 430;
+
+    background: #CCC;
+}
+
+#newfeedlist {
+  min-height: 800px;
+  height:auto !important;
+  height: 800px;
 }
