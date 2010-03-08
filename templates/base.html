@@ -6,21 +6,24 @@
         <title>Collections</title>
 
         <script type="text/javascript" src="/media/js/jquery.js"></script>
-        <link rel="stylesheet" href="/media/css/blueprint/screen.css" type="text/css" media="screen, projection">
-        <link rel="stylesheet" href="/media/css/blueprint/print.css" type="text/css" media="print">	
-        <!--[if lt IE 8]><link rel="stylesheet" href="/media/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+        <link rel="stylesheet" href="/media/css/screen.css" type="text/css" media="screen, projection">
+        <link rel="stylesheet" href="/media/css/print.css" type="text/css" media="print">
+        <!--[if lt IE 8]><link rel="stylesheet" href="/media/css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 
         <script type="text/javascript" src="/media/js/reader.js"></script>
         <link rel="stylesheet" type="text/css" href="/media/css/reader.css" />
-        
+
         {% block head %}{% endblock %}
     </head>
     <body {% block bodytag %}{% endblock %} >
-        <div id="title">
-            <h1>{% block title %}{% endblock %}</h1>
+    <div class="container">
+        <div id="title" class="span-24 last">
+            <img src="/media/img/header-rss.gif" border="0" />
+            <h1 class="alt">{% block title %}{% endblock %}</h1>
         </div>
-        <div id="content">
+        <div id="content" class="span-24 last">
         {% block content %}{% endblock %}
         </div>
+    </div>
     </body>
 </html>

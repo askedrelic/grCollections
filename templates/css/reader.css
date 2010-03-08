@@ -1,0 +1,20 @@
+.container {
+}
+
+#title>img {
+    float: left;
+}
+
+#title>h1 {
+    float: right;
+    font-size: 4em;
+    padding-top: 176px;
+    padding-right: 10px;
+    margin: 0px;
+}
+
+
+#content {
+    padding-top: 75px;
+    background: url("/media/img/header.jpg") top left no-repeat;
+}
