@@ -35,7 +35,7 @@ html {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    display:block;
+    display: block;
 
     padding: 3px 7px;
     margin: 7px auto;
@@ -45,7 +45,12 @@ html {
 }
 
 #newfeedlist {
-  min-height: 800px;
-  height:auto !important;
-  height: 800px;
+    /* min-height hack with IE6 support! */
+    min-height: 800px;
+    height:auto !important;
+    height: 800px;
+}
+
+.draghovered {
+    background-color: red;
 }

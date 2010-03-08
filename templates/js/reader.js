@@ -4,19 +4,26 @@
  */
 $(function() {
     $(".draggable").draggable({
-        cursorAt: { left: 100, top: 20 },
+        cursorAt: { left: 80, top: 25 },
         helper: function() {
             return $(this).clone().css({
                 background: "blue",
             });
         }
     });
-    $("#newfeedlist").droppable();
+    $("#newfeedlist").droppable({
+        drop: function() {
+            $(this).html("Dropped!").css({
+                background: "yellow",
+                color: "black"
+            });
+        }
+    });
 
     $('#userfeedlist, #newfeedlist').css({'opacity':0});
     setTimeout(function() {
         $(".spinner").hide();
         $('#userfeedlist, #newfeedlist').css({'opacity':100});
         $('div#userfeedlist ul').fadeIn(2000);
-        },1000);
+        },500);
 });
