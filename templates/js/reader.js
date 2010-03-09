@@ -16,12 +16,14 @@ var reader = function() {
             new_feed.removeClass('ui-draggable');
             new_feed.addClass('ui-droppeditem');
         },
-        check_height : function() {
-            //balance the height of the left column, 
-            //so that colborder stays looking good
-            if($("#newfeedlist").height() >= $("#userfeedlist").height()) {
+        balance_heights : function() {
+            //balance the height of both columns
+            if($("#userfeedlist").height() >= $("#newfeedlist").height()) {
+                $("#newfeedlist").height($("#userfeedlist").height());
+            } else {
                 $("#userfeedlist").height($("#newfeedlist").height());
             }
+
         }
 	};
 }();
@@ -44,15 +46,17 @@ $(function() {
     new_feed_list.droppable({
         drop: function(event, ui) {
             reader.add_new_feed(ui.draggable);
-            reader.check_height();
+            reader.balance_heights();
         },
         hoverClass: 'ui-drophover'
     });
 
     $(user_feed_list).hide();
 
+
     setTimeout(function() {
         $(".spinner").hide();
         $(user_feed_list).fadeIn(50);
+        reader.balance_heights();
         },500);
 });
