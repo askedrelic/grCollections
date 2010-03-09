@@ -23,17 +23,14 @@ var reader = function() {
             } else {
                 $("#userfeedlist").height($("#newfeedlist").height());
             }
-
         }
 	};
 }();
 
 //DOMReady events
+//Setup drag/drops and load elements
 $(function() {
-    var user_feed_list = $("#userfeedlist ul li");
-    var new_feed_list = $("#newfeedlist");
-    
-    user_feed_list.draggable({
+    $("#userfeedlist ul li").draggable({
         cursorAt: { left: 80, top: 25 },
         helper: function() {
             return $(this).clone().css({
@@ -43,7 +40,7 @@ $(function() {
         opacity: 0.50,
         revert: "invalid"
     });
-    new_feed_list.droppable({
+    $("#newfeedlist").droppable({
         drop: function(event, ui) {
             reader.add_new_feed(ui.draggable);
             reader.balance_heights();
@@ -51,12 +48,9 @@ $(function() {
         hoverClass: 'ui-drophover'
     });
 
-    $(user_feed_list).hide();
-
-
+    $("#userfeedlist").hide();
     setTimeout(function() {
         $(".spinner").hide();
-        $(user_feed_list).fadeIn(50);
-        reader.balance_heights();
+        $("#userfeedlist").slideDown(200);
         },500);
 });

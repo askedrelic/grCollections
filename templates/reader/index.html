@@ -8,7 +8,6 @@
 {% endblock %}
 
 {% block content %}
-<div class="spinner"></div>
 
 <div class="span-13">
 2 pane split window for selecting feeds<br/>
@@ -23,6 +22,7 @@ title goes here
     Toggle order: <br/>
     Toggle categories:<br/>
     </div>
+    <div class="spinner"></div>
     <ul>
         {% for feed in user_feed_list %}
         <li class="borders">
