@@ -51,7 +51,7 @@ $(function() {
             reader.add_new_feed(ui.draggable);
             reader.balance_heights();
         },
-        hoverClass: 'ui-drophover'
+        activeClass: 'ui-drophover'
     });
 
     $("#userfeedlist").hide();

@@ -35,6 +35,16 @@ html {
     padding: 0;
 }
 
+#userfeed_settings {
+    padding-left: 50px;
+    height: 36px;
+}
+
+#newfeedlist {
+    height: 800px;
+    padding-top: 36px;
+}
+
 .ui-draggable {
     display: block;
 
@@ -49,7 +59,7 @@ html {
 }
 
 .ui-drophover {
-    background: #A8EB19;
+    background: url("/media/img/drophover.gif") repeat-y #39b54a;
 }
 
 .ui-droppeditem {
@@ -64,13 +74,6 @@ html {
 }
 
 
-#newfeedlist {
-    /* min-height hack with IE6 support! */
-    /* min-height: 800px; */
-    /* height:auto !important; */
-    height: 800px;
-}
-
 /* general styling classes */
 
 .borders {
@@ -79,3 +82,8 @@ html {
     border-radius: 10px;
 }
 
+.rssicon {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-top;
+}
