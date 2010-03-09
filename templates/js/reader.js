@@ -8,17 +8,20 @@ var reader = function() {
             //ordering
         },
         add_new_feed : function(new_feed) {
-            //swap DOM element
-            $("#newfeedlist ul").append(new_feed);
+            //move DOM element
+            new_feed.appendTo("#newfeedlist ul");
             //remove drag
             new_feed.draggable('disable');
             //change styles
+            new_feed.removeClass('ui-draggable');
+            new_feed.addClass('ui-droppeditem');
         },
-        check_heights : function() {
-            //gaurantees the minimum height of both columns is
-            //equal
-
-
+        check_height : function() {
+            //balance the height of the left column, 
+            //so that colborder stays looking good
+            if($("#newfeedlist").height() >= $("#userfeedlist").height()) {
+                $("#userfeedlist").height($("#newfeedlist").height());
+            }
         }
 	};
 }();
@@ -40,15 +43,10 @@ $(function() {
     });
     new_feed_list.droppable({
         drop: function(event, ui) {
-            $(this).removeClass('ui-drophover');
             reader.add_new_feed(ui.draggable);
+            reader.check_height();
         },
-        over: function(event, ui) {
-            $(this).addClass('ui-drophover');
-        },
-        out: function(event, ui) {
-            $(this).removeClass('ui-drophover');
-        }
+        hoverClass: 'ui-drophover'
     });
 
     $(user_feed_list).hide();

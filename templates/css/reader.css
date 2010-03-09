@@ -26,7 +26,7 @@ html {
     background: url("/media/img/header.jpg") top left no-repeat;
 }
 
-#userfeedlist ul {
+#userfeedlist ul, #newfeedlist ul {
     margin: 0;
     padding: 0;
 }
@@ -41,6 +41,22 @@ html {
     border: 1px solid #000000;
     background: #EEEEEE;
 }
+
+.ui-drophover {
+    background: #A8EB19;
+}
+
+.ui-droppeditem {
+    display: block;
+
+    padding: 3px 7px;
+    margin: 7px auto;
+    width: 350px;
+
+    border: 1px solid #000000;
+    background: #EEEEEE;
+}
+
 
 #newfeedlist {
     /* min-height hack with IE6 support! */
@@ -57,6 +73,3 @@ html {
     border-radius: 10px;
 }
 
-.ui-drophover {
-    background: #A8EB19;
-}
