@@ -36,13 +36,11 @@ html {
 }
 
 #userfeed_settings {
-    padding-left: 50px;
-    height: 36px;
+    text-align: center;
 }
 
 #newfeedlist {
     height: 800px;
-    padding-top: 36px;
 }
 
 .ui-draggable {

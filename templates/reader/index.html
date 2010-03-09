@@ -9,8 +9,8 @@
 
 {% block content %}
 
-<div class="span-13">
-    asdsad
+<div id="userfeed_settings" class="span-13">
+Toggle sort order: Alpha Categories
 </div>
 <div class="span-11 last">
 <h3>new feeds</h3>
@@ -18,18 +18,13 @@ title goes here
 </div>
 
 <div id="userfeedlist" class="span-12 colborder">
-    <div id="userfeed_settings">
-    Toggle order: <br/>
-    Toggle categories:<br/>
-    </div>
     <div class="spinner"></div>
     <ul>
         {% for feed in user_feed_list %}
         <li class="borders">
         <img class="rssicon" src="/media/img/rssfavicon.gif"/>
-        <strong>{{feed.title}}</strong>
+        <strong>{{feed.title}}</strong><br/>
         <span class="alt"><a href="{{feed.url}}">{{feed.url}}</a></span><br/>
-        desc sucks<br/>
         </li>
         {% endfor %}
     </ul>
