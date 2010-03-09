@@ -54,6 +54,10 @@ $(function() {
         activeClass: 'ui-drophover'
     });
 
+    $("#newfeedtext").bind('click', function() {
+            this.value = '';
+    });
+
     $("#userfeedlist").hide();
     setTimeout(function() {
         $(".spinner").hide();

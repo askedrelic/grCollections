@@ -43,6 +43,12 @@ html {
     height: 800px;
 }
 
+#newfeedtext {
+    float: right;
+    margin-right: 32px;
+    width: 175px;
+}
+
 .ui-draggable {
     display: block;
 
