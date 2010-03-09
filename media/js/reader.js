@@ -21,11 +21,16 @@ var reader = function() {
             new_feed.addClass('ui-droppeditem');
         },
         balance_heights: function() {
-            //balance the height of both columns
-            if($("#userfeedlist").height() >= $("#newfeedlist").height()) {
-                $("#newfeedlist").height($("#userfeedlist").height());
+            //balance the height of both columns, 
+            //for css effects and proper DOM div heights
+            if($("#userfeedlist ul").height() >= $("#newfeedlist ul").height()) {
+                $("#newfeedlist").height($("#userfeedlist ul").height());
             } else {
-                $("#userfeedlist").height($("#newfeedlist").height());
+                $("#userfeedlist").height($("#newfeedlist ul").height());
+
+                //set the div height to match the ul for the drag hover
+                //background
+                $("#newfeedlist").height($("#newfeedlist ul").height() + 50);
             }
         }
 	};
