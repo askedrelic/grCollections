@@ -89,11 +89,11 @@ def echo(request):
 
 def getDemoFeeds():
     feed_list = []
-    feed_list.append(Feed('Title', 'url', 'categories categories categories'))
-    feed_list.append(Feed('WE THE ROBOTS', 'http://feeds.feedburner.com/WeTheRobots', 'comics'))
-    feed_list.append(Feed('Cook To Bang', 'http://cooktobang.com/feed/', 'food'))
-    feed_list.append(Feed('Amy Blogs Chow', 'http://amyblogschow.jasonpaladino.com/?feed=rss2', 'food'))
-    feed_list.append(Feed('Superpoop', 'http://superpoop.com/rss/rss.php', 'comics'))
-    feed_list.append(Feed('Explosm.net', 'http://feeds.feedburner.com/Explosm', 'comics'))
-    feed_list.append(Feed('xkcd', 'http://xkcd.com/rss.xml', 'comics'))
+    feed_list.append(Feed('Title', 'url', ['categories','categories','categories']))
+    feed_list.append(Feed('WE THE ROBOTS', 'http://feeds.feedburner.com/WeTheRobots', ['comics']))
+    feed_list.append(Feed('Cook To Bang', 'http://cooktobang.com/feed/', ['food']))
+    feed_list.append(Feed('Amy Blogs Chow', 'http://amyblogschow.jasonpaladino.com/?feed=rss2', ['food']))
+    feed_list.append(Feed('Superpoop', 'http://superpoop.com/rss/rss.php', ['comics']))
+    feed_list.append(Feed('Explosm.net', 'http://feeds.feedburner.com/Explosm', ['comics']))
+    feed_list.append(Feed('xkcd', 'http://xkcd.com/rss.xml', ['comics']))
     return feed_list

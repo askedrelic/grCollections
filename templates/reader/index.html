@@ -9,7 +9,7 @@
 
 {% block content %}
 <div id="instructions" class="span-24 last center">
-    Instructions: Find the RSS feeds you want to collect, drag them over to the right-hand side, give the collection a name, then save and share it!
+    Collect the feeds you want to share on the right-hand side. Drag them over, give the collection a name, then save and share it!
 </div>
 
 <div id="userfeed_settings" class="span-13 center">
@@ -17,7 +17,8 @@ Toggle sort order: Alpha Categories
 </div>
 <div class="span-11 last center">
 <form method="POST" action="/share/">
-    <input id="newfeedtext" type="text" name="newfeedname" value="Name your new collection!"/>
+    <input id="newfeedtext" type="text" name="newfeedname" value="Give your collection a name!"/>
+    <input type="submit" value="Save and share!"/>
 </form>
 </div>
 

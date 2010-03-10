@@ -59,9 +59,11 @@ $(function() {
         activeClass: 'ui-drophover'
     });
 
+    //Remove the collection name input field text on click 
     $("#newfeedtext").bind('click', function() {
             this.value = '';
     });
+
 
     $("#userfeedlist").hide();
     setTimeout(function() {
