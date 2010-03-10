@@ -24,10 +24,15 @@ def index(request):
             #use OPML file
             username = getOPMLTitle(opmlfile)
             user_feed_list = getOPMLFeeds(opmlfile)
+        elif 'test' in request.POST:
+            #testing mode!
+            username = "tester"
+            user_feed_list = getDemoFeeds()
         else:
             #error!
             pass
 
+    print [str(f) for f in user_feed_list]
     templateLocation = 'reader/index.html'
     return direct_to_template(request, templateLocation, locals())
 
@@ -81,3 +86,14 @@ def getOPMLTitle(opmlfile):
 #AJAX METHODS
 def echo(request):
     return HttpResponse(request.GET['echo'])
+
+def getDemoFeeds():
+    feed_list = []
+    feed_list.append(Feed('Title', 'url', 'categories categories categories'))
+    feed_list.append(Feed('WE THE ROBOTS', 'http://feeds.feedburner.com/WeTheRobots', 'comics'))
+    feed_list.append(Feed('Cook To Bang', 'http://cooktobang.com/feed/', 'food'))
+    feed_list.append(Feed('Amy Blogs Chow', 'http://amyblogschow.jasonpaladino.com/?feed=rss2', 'food'))
+    feed_list.append(Feed('Superpoop', 'http://superpoop.com/rss/rss.php', 'comics'))
+    feed_list.append(Feed('Explosm.net', 'http://feeds.feedburner.com/Explosm', 'comics'))
+    feed_list.append(Feed('xkcd', 'http://xkcd.com/rss.xml', 'comics'))
+    return feed_list

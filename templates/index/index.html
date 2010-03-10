@@ -5,7 +5,12 @@ collections
 {% endblock %}
 
 {% block content %}
-<p>A web app for making collections of RSS feeds from Google Reader.</p>
+<form method="POST" action="/select/">
+    <p>
+    A web app for making collections of RSS feeds from Google Reader. <input type="submit" value="Try it out!"/>
+    <input type="hidden" name="test"/>
+    </p>
+</form>
 
 <div class="span-24 last">
 Simple as,
@@ -18,7 +23,7 @@ Simple as,
     2. Select the feeds that you want to make into a collection.
 </div>
 <div class="span-7 box last">
-    3. Share your collection with your friends.
+    3. Share the collection with your friends.
     <br/>
     <br/>
 </div>
@@ -30,14 +35,17 @@ Simple as,
     <form method="POST" action="/select/">
         <input type="text" name="username"/>
         <input type="password" name="password"/>
-        <input type="submit"/>
+        <input type="submit" value="Grab"/>
     </form>
 </div>
 <div class="span-12 last">
-    Or upload an OPML list of your feeds, which you can export from Google Reader.
+    Or upload an OPML list of your feeds, which you can export from Google Reader.<br/><br/>
     <form enctype="multipart/form-data" method="POST" action="/select/">
         <input type="file" name="opmlfile"/>
-        <input type="submit"/>
+        <input type="submit" value="Upload"/>
     </form>
+</div>
+
+<div class="span-24 last center" id="footer">
 </div>
 {% endblock %}

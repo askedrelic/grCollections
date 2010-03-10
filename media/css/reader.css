@@ -27,7 +27,11 @@ html {
 }
 
 #footer {
-    height: 100px;
+    height: 64px;
+}
+
+#instructions {
+    height: 64px;
 }
 
 #userfeedlist ul, #newfeedlist ul {
@@ -35,17 +39,12 @@ html {
     padding: 0;
 }
 
-#userfeed_settings {
-    text-align: center;
-}
 
 #newfeedlist {
     height: 800px;
 }
 
 #newfeedtext {
-    float: right;
-    margin-right: 32px;
     width: 175px;
 }
 
@@ -79,6 +78,9 @@ html {
 
 
 /* general styling classes */
+.center {
+    text-align: center;
+}
 
 .borders {
     -webkit-border-radius: 10px;
