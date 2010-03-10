@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block title %}
-{{username}}'s feedlist
+{{username|lower}}'s feedlist
 {% endblock %}
 
 {% block content %}
@@ -23,9 +23,9 @@ Toggle sort order: Alpha Categories
     <ul>
         {% for feed in user_feed_list %}
         <li class="borders">
-        <img class="rssicon" src="/media/img/rssfavicon.gif"/>
-        <strong>{{feed.title}}</strong><br/>
-        <span class="alt"><a href="{{feed.url}}">{{feed.url}}</a></span><br/>
+        <strong>{{feed.title|slice:":50"}}</strong>
+        <img class="rssicon" src="/media/img/rssfavicon.gif"/><br/>
+        <span class="alt">{{feed.url|urlizetrunc:40}}</span>
         {{feed.categories}}
         </li>
         {% endfor %}

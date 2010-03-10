@@ -16,6 +16,9 @@ def index(request):
                 username = request.POST['username']
                 password = request.POST['password']
                 user_feed_list = getGoogleFeeds(username,password)
+                #if username is an email, don't display the domain part
+                if "@" in username:
+                    username = username.split("@")[0]
         elif 'opmlfile' in request.FILES and request.FILES['opmlfile']:
             opmlfile = request.FILES['opmlfile'].read()
             #use OPML file
