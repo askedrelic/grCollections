@@ -30,9 +30,9 @@
     <ul>
         {% for feed in user_feed_list %}
             <li class="borders">
-            <span class="title">{{feed.title|slice:":50"}}</span>
+            <span class="feed-title">{{feed.title}}</span>
             <img class="rssicon" src="/media/img/rssfavicon.gif"/><br/>
-            <span class="alt">{{feed.url|urlizetrunc:40}}</span>
+            <span class="alt">{{feed.url}}</span>
             {{feed.categories}}
             </li>
         {% endfor %}

@@ -82,6 +82,10 @@ html {
     text-align: center;
 }
 
+.feed-title {
+    font-weight: bold;
+}
+
 .borders {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
