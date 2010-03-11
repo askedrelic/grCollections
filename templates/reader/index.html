@@ -13,7 +13,7 @@
 </div>
 
 <div id="userfeed_settings" class="span-13 center">
-Toggle sort order: Alpha Categories
+    Toggle sort order: <a id="alpha_toggle" href="#">Alpha</a> Categories
 </div>
 <div class="span-11 last center">
 <form method="POST" action="/share/">
@@ -26,12 +26,12 @@ Toggle sort order: Alpha Categories
     <div class="spinner"></div>
     <ul>
         {% for feed in user_feed_list %}
-        <li class="borders">
-        <strong>{{feed.title|slice:":50"}}</strong>
-        <img class="rssicon" src="/media/img/rssfavicon.gif"/><br/>
-        <span class="alt">{{feed.url|urlizetrunc:40}}</span>
-        {{feed.categories}}
-        </li>
+            <li class="borders">
+            <strong>{{feed.title|slice:":50"}}</strong>
+            <img class="rssicon" src="/media/img/rssfavicon.gif"/><br/>
+            <span class="alt">{{feed.url|urlizetrunc:40}}</span>
+            {{feed.categories}}
+            </li>
         {% endfor %}
     </ul>
 </div>
