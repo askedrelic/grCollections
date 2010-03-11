@@ -11,7 +11,7 @@ var reader = function() {
                 return $(el).css("border-color", border_colors3[index % border_colors3.length]);
             });
 
-            $('#userfeed_settings').append("<br/>Number of feeds: " + $('#userfeedlist ul li').length);
+            this.update_feed_count();
         },
         add_new_feed: function(new_feed) {
             //move DOM element
@@ -37,11 +37,14 @@ var reader = function() {
         },
         build_feed_item: function(title, url, categories) {
         },
+        update_feed_count: function() {
+            $('#num_user_feeds').text($('#userfeedlist ul li').length);
+            $('#num_new_feeds').text($('#newfeedlist ul li').length);
+        },
         alpha_sort_feeds: function() {
             var userlist = $('#userfeedlist ul');
             var feeds = userlist.children('li').get();
             feeds.sort(function(a, b) {
-                console.log(a, $(a));
                 var compA = $(a).text().toUpperCase();
                 var compB = $(b).text().toUpperCase();
                 return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
@@ -58,11 +61,10 @@ $(function() {
 
     $("#userfeedlist ul li").draggable({
         cursorAt: { left: 80, top: 25 },
-        helper: function() {
-            return $(this).clone().css({
-                'background':'#AAAAAA',
-            });
+        start: function(event, el) {
+            reader.update_feed_count();
         },
+        helper: 'clone',
         opacity: 0.50,
         revert: "invalid"
     });
@@ -70,6 +72,7 @@ $(function() {
         drop: function(event, ui) {
             reader.add_new_feed(ui.draggable);
             reader.balance_heights();
+            reader.update_feed_count();
         },
         activeClass: 'ui-drophover'
     });
