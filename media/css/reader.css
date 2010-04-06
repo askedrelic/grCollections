@@ -9,16 +9,14 @@ html {
     display: block;
 }
 
-#title>img {
+#title img {
     float: left;
 }
 
-#title>h1 {
+#title h1 {
     float: right;
     font-size: 4em;
-    padding-top: 175px;
-    padding-right: 10px;
-    margin: 0px;
+    margin: 175px 10px 0 0;
 }
 
 #content {
