@@ -8,6 +8,10 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^$', 'index.views.index'),
     (r'^select/$', 'reader.views.index'),
+    (r'^share/$', 'reader.views.share'),
+
+
+    (r'^v/$', 'reader.views.view'),
 
     (r'^admin/(.*)', admin.site.root),
 )

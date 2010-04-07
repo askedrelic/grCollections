@@ -1,9 +1,13 @@
 from django.views.generic.simple import direct_to_template
 from django.http import HttpResponse
 
+from reader.models import FeedList, Feed as rssFeed
+
 from lib.libgreader import Feed, GoogleReader
 import lxml.etree
 import json
+import string
+from random import Random
 
 def convert_to_builtin_type(obj):
     # Convert objects to a dictionary of their representation
@@ -42,6 +46,34 @@ def index(request):
     #print json.dumps(user_feed_list,  sort_keys=True, indent=2, default=convert_to_builtin_type)
     templateLocation = 'reader/index.html'
     return direct_to_template(request, templateLocation, locals())
+
+def share(request):
+    """
+    Take a list of rssFeeds and name, give them a unique id, and save them
+    """
+    if request.method == 'POST':
+        if 'feedname' in request.POST and request.POST['feedname']:
+            feedname = request.POST['feedname']
+            randid = "".join(Random().sample(string.letters+string.digits, 10))
+            feedlist = FeedList(name=feedname, urlid=randid)
+            feedlist.save()
+            for f in request.POST.items():
+                if f[0] != 'feedname' and f[0] != '':
+                    print f, f[0]
+                    rssFeed.objects.create(
+                            title=f[0],
+                            url=f[1],
+                            list_of_feeds=feedlist)
+        return HttpResponse(feedlist.id)
+    return HttpResponse(200)
+
+
+def view(request):
+    """
+    View a feedlist
+    """
+
+    return HttpResponse(200)
 
 def getGoogleFeeds(username, password):
     try:
@@ -117,10 +149,6 @@ def uniqifyCategories(feedlist):
     for feed in feedlist:
         [categories.add(cat) for cat in feed.categories] 
     return sorted(list(categories))
-
-#AJAX METHODS
-def echo(request):
-    return HttpResponse(request.GET['echo'])
 
 def getDemoFeeds():
     feed_list = []

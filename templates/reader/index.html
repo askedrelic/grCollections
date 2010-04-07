@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
 {% block head %}
+<script>
+    #JS parse json here and add it to reader
+</script>
 {% endblock %}
 
 {% block title %}
@@ -19,9 +22,8 @@
 </div>
 <div class="span-11 last center">
 <form method="POST" action="/share/">
-    <input id="newfeedtext" type="text" name="newfeedname" value="Give your collection a name!"/>
+    <input id="newfeedtext" type="text" name="feedname" value="Give your collection a name!"/>
     <input type="submit" value="Save and share!"/>
-</form>
     Number of feeds: <span id="num_new_feeds"></span>
 </div>
 
@@ -34,6 +36,8 @@
             <img class="rssicon" src="/media/img/rssfavicon.gif"/><br/>
             <span class="alt">{{feed.url}}</span>
             {{feed.categories}}
+
+            <input type="hidden" name="{{feed.title}}" value="{{feed.url}}" />
             </li>
         {% endfor %}
     </ul>
@@ -42,6 +46,7 @@
     <ul>
     </ul>
 </div>
+</form>
 
 <div id="footer" class="span-24 last">
     it's a footer!
