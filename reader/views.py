@@ -21,8 +21,8 @@ def index(request):
     Uses either to setup list of alpha sorted feeds.
     """
     if request.method == 'POST':
-        if 'username' in request.POST and request.POST['username'] and\
-            'password' in request.POST and request.POST['password']:
+        if ('username' in request.POST and request.POST['username'] and
+            'password' in request.POST and request.POST['password']):
                 #using libgreader
                 username = request.POST['username']
                 password = request.POST['password']
@@ -57,23 +57,30 @@ def share(request):
             randid = "".join(Random().sample(string.letters+string.digits, 10))
             feedlist = FeedList(name=feedname, urlid=randid)
             feedlist.save()
+            import ipdb; ipdb.set_trace()
             for f in request.POST.items():
-                if f[0] != 'feedname' and f[0] != '':
-                    print f, f[0]
+                if f[0] != 'feedname' and f[0]:
                     rssFeed.objects.create(
                             title=f[0],
                             url=f[1],
                             list_of_feeds=feedlist)
-        return HttpResponse(feedlist.id)
-    return HttpResponse(200)
+
+    templateLocation = 'reader/share.html'
+    return direct_to_template(request, templateLocation, locals())
 
 
-def view(request):
+def view(request,urlid):
     """
     View a feedlist
     """
+    user_feed_list = FeedList.objects.get(urlid = urlid)
+    user_feed_list = user_feed_list.feed_set.all()
 
-    return HttpResponse(200)
+    if user_feed_list:
+        templateLocation = 'reader/view.html'
+        return direct_to_template(request, templateLocation, locals())
+    else:
+        return HttpResponse(500)
 
 def getGoogleFeeds(username, password):
     try:

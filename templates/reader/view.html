@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block head %}
+<script>
+</script>
+{% endblock %}
+
+{% block title %}
+viewing a feedlist
+{% endblock %}
+
+{% block content %}
+<div id="userfeedlist" class="span-24 last center">
+    hello<br/>
+    <ul>
+        {% for feed in user_feed_list %}
+            <li class="borders">
+            <span class="feed-title">{{feed.title}}</span>
+            <img class="rssicon" src="/media/img/rssfavicon.gif"/><br/>
+            <span class="alt">{{feed.url}}</span>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div id="footer" class="span-24 last">
+    it's a footer!
+</div>
+
+{% endblock %}

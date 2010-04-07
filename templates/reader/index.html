@@ -2,7 +2,7 @@
 
 {% block head %}
 <script>
-    #JS parse json here and add it to reader
+    //JS parse json here and add it to reader
 </script>
 {% endblock %}
 
@@ -20,13 +20,6 @@
     <br/><br/>
     Number of feeds: <span id="num_user_feeds"></span>
 </div>
-<div class="span-11 last center">
-<form method="POST" action="/share/">
-    <input id="newfeedtext" type="text" name="feedname" value="Give your collection a name!"/>
-    <input type="submit" value="Save and share!"/>
-    Number of feeds: <span id="num_new_feeds"></span>
-</div>
-
 <div id="userfeedlist" class="span-12 colborder">
     <div class="spinner"></div>
     <ul>
@@ -42,6 +35,14 @@
         {% endfor %}
     </ul>
 </div>
+
+<form id="share_form" method="POST" action="/share/">
+<div class="span-11 last center">
+    <input id="newfeedtext" type="text" name="feedname" value="Give your collection a name!"/>
+    <input type="submit" value="Save and share!"/>
+    Number of feeds: <span id="num_new_feeds"></span>
+</div>
+
 <div id="newfeedlist" class="span-11 last borders">
     <ul>
     </ul>

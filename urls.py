@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     (r'^share/$', 'reader.views.share'),
 
 
-    (r'^v/$', 'reader.views.view'),
+    (r'^v/([a-zA-Z0-9]{10})$', 'reader.views.view'),
 
     (r'^admin/(.*)', admin.site.root),
 )
