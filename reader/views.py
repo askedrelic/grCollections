@@ -57,7 +57,6 @@ def share(request):
             randid = "".join(Random().sample(string.letters+string.digits, 10))
             feedlist = FeedList(name=feedname, urlid=randid)
             feedlist.save()
-            import ipdb; ipdb.set_trace()
             for f in request.POST.items():
                 if f[0] != 'feedname' and f[0]:
                     rssFeed.objects.create(
