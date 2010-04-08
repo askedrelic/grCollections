@@ -2,3 +2,13 @@ Built for:
 Django 1.X ?
 libgreader 0.3
 lxml
+
+colors
+http://www.colorcombos.com/color-scheme-13.html
+-----
+
+http://blog.zacharyvoase.com/2010-02-03-django-project-conventions-revisited
+
+-----
+export DJANGO_SETTINGS_MODULE=settings.development # Mutatis mutandem
+echo "!!" >> ../bin/activate

@@ -1,11 +1,11 @@
-# Django settings for grCollections project.
-import os
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_DIR = BASE_DIR
+from common import *
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+
+## Database Setup
+DATABASE_ENGINE = 'sqlite3'
+DATABASE_NAME = SITE_ROOT / 'db' / 'development.sqlite3'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -23,10 +23,6 @@ SITE_ID = 1
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
-
-# Absolute path to the directory that holds media.
-# Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "media/")
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -51,7 +47,6 @@ DEVSERVER_MODULES = (
     #'devserver.modules.profile.MemoryUseModule',
     #'devserver.modules.cache.CacheSummaryModule',
 )
-
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -85,6 +80,3 @@ INSTALLED_APPS = (
     'grCollections.index',
     'grCollections.reader',
 )
-
-#import local settings
-from localsettings import *
