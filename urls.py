@@ -1,5 +1,4 @@
 from django.conf.urls.defaults import *
-from django.conf import settings
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -17,8 +16,9 @@ urlpatterns = patterns('',
 )
 
 #DEBUG Let django host static content during development.
-if settings.DEBUG:
+import settings
+if settings.development.DEBUG:
     urlpatterns += patterns('',
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.development.MEDIA_ROOT}),
     )
 
