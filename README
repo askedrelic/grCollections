@@ -1,14 +1,10 @@
-Built for:
-Django 1.X ?
-libgreader 0.3
-lxml
-
-colors
+>colors
 http://www.colorcombos.com/color-scheme-13.html
------
 
+>project layout
 http://blog.zacharyvoase.com/2010-02-03-django-project-conventions-revisited
 
------
+>settings for virtualenv bin/activate
+export PYTHONPATH=.
 export DJANGO_SETTINGS_MODULE=settings.development # Mutatis mutandem
 echo "!!" >> ../bin/activate
