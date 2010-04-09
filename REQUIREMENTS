@@ -1,6 +1,5 @@
-Django==1.1.1
 yolk==0.4.1
-path==2.2
+http://pypi.python.org/packages/source/p/path.py/path-2.2.zip
 
 django-debug-toolbar==0.8.3
 
