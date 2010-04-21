@@ -1,19 +1,12 @@
 from django.views.generic.simple import direct_to_template
 from django.http import HttpResponse
 
-from reader.models import FeedList, Feed as rssFeed
+from apps.reader.models import FeedList, Feed as rssFeed
 
 from lib.libgreader import Feed, GoogleReader
 import lxml.etree
-import json
 import string
 from random import Random
-
-def convert_to_builtin_type(obj):
-    # Convert objects to a dictionary of their representation
-    d = {}
-    d.update(obj.__dict__)
-    return d
 
 def index(request):
     """
@@ -43,7 +36,6 @@ def index(request):
             #error!
             pass
 
-    #print json.dumps(user_feed_list,  sort_keys=True, indent=2, default=convert_to_builtin_type)
     templateLocation = 'reader/index.html'
     return direct_to_template(request, templateLocation, locals())
 
@@ -93,7 +85,7 @@ def getGoogleFeeds(username, password):
         user_feed_list = google.getFeeds()
 
     #add unique list of categories in 0 place
-    user_feed_list.insert(0, uniqifyCategories(user_feed_list))
+    #user_feed_list.insert(0, uniqifyCategories(user_feed_list))
     return user_feed_list
 
 def getOPMLFeeds(opmlfile):
@@ -129,13 +121,13 @@ def getOPMLFeeds(opmlfile):
         new_feed = Feed(title, url, [])
         if title not in feed_list:
             feed_list[title] = new_feed
-    
+
     #convert to List and sort based off the Feed title
     feed_list = feed_list.values()
     feed_list.sort(key=lambda obj: obj.title.lower())
 
     #add unique list of categories in 0 place
-    feed_list.insert(0, uniqifyCategories(feed_list))
+    #feed_list.insert(0, uniqifyCategories(feed_list))
     return feed_list
 
 def getOPMLTitle(opmlfile):
@@ -153,7 +145,7 @@ def uniqifyCategories(feedlist):
     #find all categories in a list of feeds and return them as a single list
     categories = set()
     for feed in feedlist:
-        [categories.add(cat) for cat in feed.categories] 
+        [categories.add(cat) for cat in feed.categories]
     return sorted(list(categories))
 
 def getDemoFeeds():
@@ -167,5 +159,5 @@ def getDemoFeeds():
     feed_list.append(Feed('xkcd', 'http://xkcd.com/rss.xml', ['comics']))
 
     #add unique list of categories in 0 place
-    feed_list.insert(0, uniqifyCategories(feed_list))
+    #feed_list.insert(0, uniqifyCategories(feed_list))
     return feed_list
