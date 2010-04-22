@@ -12,6 +12,7 @@ var reader = function() {
         });
 
         this.update_feed_count();
+        this.setup_drag();
     }
     function add_new_feed(new_feed) {
         //move DOM element
@@ -35,13 +36,16 @@ var reader = function() {
             $("#newfeedlist").height($("#newfeedlist ul").height() + 50);
         }
     }
-    function build_feed_item(title, url, categories) {
-    }
     function update_feed_count() {
         $('#num_user_feeds').text($('#userfeedlist ul li').length);
         $('#num_new_feeds').text($('#newfeedlist ul li').length);
     }
     function alpha_sort_feeds() {
+        //TODO: uniqify list
+        
+        //first, remove any H2 category headers
+        $('#userfeedlist ul h2').remove();
+
         var userlist = $('#userfeedlist ul');
         var feeds = userlist.children('li').get();
         feeds.sort(function(a, b) {
@@ -51,6 +55,63 @@ var reader = function() {
         });
         $.each(feeds, function(idx, itm) { userlist.append(itm); });
     }
+    function category_sort_feeds() {
+        var userlist = $('#userfeedlist ul');
+        //remove current alpha-sorted feed elements
+        userlist.children('li').remove();
+        
+        //loop through unique categories
+        for(cat_index in reader.categories) {
+            //add category header
+            var cat_header = $('<h2></h2>');
+            var category_label = reader.categories[cat_index];
+            cat_header.text(category_label);
+            $(userlist).append(cat_header);
+
+            //for all feeds, if the categories match, add the feed to the
+            //category
+            for(data_index in reader.data) {
+                var feed_cats = reader.data[data_index]["categories"];
+                for(feed_index in feed_cats) {
+                    if(category_label === feed_cats[feed_index]) {
+                        //append feed
+                        $(userlist).append(
+                            this.build_feed_item(
+                                reader.data[data_index]["title"],
+                                reader.data[data_index]["url"])
+                        );
+                    }
+                }
+            }
+        }
+
+        this.setup_drag();
+        this.update_feed_count();
+        this.balance_heights();
+    }
+    function build_feed_item(title, url) {
+        var li = $('<li class="borders ui-draggable"></li>');
+        var title_el = $('<span class="feed-title">'+title+'</span>');
+        var rss_el = $('<img class="rssicon" src="/media/img/rssfavicon.gif"/><br/>');
+        var url_el = $('<span class="alt">'+url+'</span>');
+        var input_el = $('<input type="hidden" />');
+        $(input_el).attr('name', title).attr('url', url);
+
+        $(li).append(title_el).append(rss_el).append(url_el).append(input_el);
+        return li;
+    }
+
+    function setup_drag_handlers() {
+        $("#userfeedlist ul li").draggable({
+            cursorAt: { left: 80, top: 25 },
+            start: function(event, el) {
+                reader.update_feed_count();
+            },
+            helper: 'clone',
+            opacity: 0.50,
+            revert: "invalid"
+        });
+    }
 
     //public data/functions
 	return {
@@ -59,7 +120,9 @@ var reader = function() {
         balance_heights: balance_heights,
         build_feed_item: build_feed_item,
         update_feed_count: update_feed_count,
-        alpha_sort_feeds: alpha_sort_feeds
+        alpha_sort_feeds: alpha_sort_feeds,
+        cat_sort: category_sort_feeds,
+        setup_drag: setup_drag_handlers
 	}
 }();
 
@@ -68,15 +131,6 @@ var reader = function() {
 $(function() {
     reader.init();
 
-    $("#userfeedlist ul li").draggable({
-        cursorAt: { left: 80, top: 25 },
-        start: function(event, el) {
-            reader.update_feed_count();
-        },
-        helper: 'clone',
-        opacity: 0.50,
-        revert: "invalid"
-    });
     $("#newfeedlist").droppable({
         drop: function(event, ui) {
             reader.add_new_feed(ui.draggable);
@@ -94,6 +148,11 @@ $(function() {
     //setup sorting of feeds
     $("#alpha_toggle").bind('click', function() {
             reader.alpha_sort_feeds();
+            return false;
+    });
+
+    $("#category_toggle").bind('click', function() {
+            reader.cat_sort();
             return false;
     });
 

@@ -2,7 +2,8 @@
 
 {% block head %}
 <script>
-    reader.categories = {{uniq_json_categories|safe}};
+    reader.categories = {{json_uniq_categories|safe}};
+    reader.data = {{json_user_feed|safe}};
 </script>
 {% endblock %}
 
@@ -16,7 +17,8 @@
 </div>
 
 <div id="userfeed_settings" class="span-13 center">
-    Toggle sort order: <a id="alpha_toggle" href="#">Alpha</a> Categories
+    Toggle sort order: <a id="alpha_toggle" href="#">Alpha</a>
+    <a id="category_toggle" href="#">Categories</a>
     <br/><br/>
     Number of feeds: <span id="num_user_feeds"></span>
 </div>

@@ -10,6 +10,12 @@ import json
 import string
 from random import Random
 
+def convert_to_builtin_type(obj):
+    # Convert objects to a dictionary of their representation
+    d = {}
+    d.update(obj.__dict__)
+    return d
+
 def index(request):
     """
     Receives POST request with GReader user/pass or OPML file of feeds.
@@ -39,7 +45,11 @@ def index(request):
             pass
 
     #get unique categories for sorting
-    uniq_json_categories = json.dumps(uniqifyCategories(user_feed_list))
+    json_uniq_categories = json.dumps(uniqifyCategories(user_feed_list))
+
+    json_user_feed = json.dumps(user_feed_list,
+                                sort_keys=True,
+                                default=convert_to_builtin_type)
 
     templateLocation = 'reader/index.html'
     return direct_to_template(request, templateLocation, locals())
@@ -152,7 +162,6 @@ def uniqifyCategories(feedlist):
 
 def getDemoFeeds():
     feed_list = []
-    feed_list.append(Feed('Title', 'url', ['categories','categories','categories']))
     feed_list.append(Feed('WE THE ROBOTS', 'http://feeds.feedburner.com/WeTheRobots', ['comics']))
     feed_list.append(Feed('Cook To Bang', 'http://cooktobang.com/feed/', ['food']))
     feed_list.append(Feed('Amy Blogs Chow', 'http://amyblogschow.jasonpaladino.com/?feed=rss2', ['food']))
@@ -160,4 +169,4 @@ def getDemoFeeds():
     feed_list.append(Feed('Explosm.net', 'http://feeds.feedburner.com/Explosm', ['comics']))
     feed_list.append(Feed('xkcd', 'http://xkcd.com/rss.xml', ['comics']))
 
-    return feed_list
+    return sorted(feed_list, key=lambda obj: obj.title.lower())
