@@ -2,7 +2,7 @@
 
 {% block head %}
 <script>
-    //JS parse json here and add it to reader
+    reader.categories = {{uniq_json_categories|safe}};
 </script>
 {% endblock %}
 
@@ -27,8 +27,7 @@
             <li class="borders">
             <span class="feed-title">{{feed.title}}</span>
             <img class="rssicon" src="/media/img/rssfavicon.gif"/><br/>
-            <span class="alt">{{feed.url}}</span>
-            {{feed.categories}}
+            <span class="alt">{{feed.url|slice:":65"}}</span>
 
             <input type="hidden" name="{{feed.title}}" value="{{feed.url}}" />
             </li>

@@ -5,7 +5,8 @@ var reader = function() {
     var border_colors3 = ["#FF9E00","#80FF00","#00FF00","#00FF80","#00FFFF","#0080FF","#0000FF","#8000FF"];
 
     function init() {
-        //setup #userfeedlist settings, toggles
+        /* setup #userfeedlist settings, toggles */
+        
         $.map($("#userfeedlist ul li"), function (el, index) {
             return $(el).css("border-color", border_colors3[index % border_colors3.length]);
         });
@@ -90,12 +91,13 @@ $(function() {
             this.value = '';
     });
 
-    //Remove the collection name input field text on click
+    //setup sorting of feeds
     $("#alpha_toggle").bind('click', function() {
             reader.alpha_sort_feeds();
             return false;
     });
 
+    //slide the feeds in, in a flashy way!
     $("#userfeedlist").hide();
     setTimeout(function() {
         $(".spinner").hide();

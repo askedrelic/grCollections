@@ -4,7 +4,9 @@ from django.http import HttpResponse
 from apps.reader.models import FeedList, Feed as rssFeed
 
 from lib.libgreader import Feed, GoogleReader
+
 import lxml.etree
+import json
 import string
 from random import Random
 
@@ -35,6 +37,9 @@ def index(request):
         else:
             #error!
             pass
+
+    #get unique categories for sorting
+    uniq_json_categories = json.dumps(uniqifyCategories(user_feed_list))
 
     templateLocation = 'reader/index.html'
     return direct_to_template(request, templateLocation, locals())
@@ -84,12 +89,10 @@ def getGoogleFeeds(username, password):
     if google.buildSubscriptionList():
         user_feed_list = google.getFeeds()
 
-    #add unique list of categories in 0 place
-    #user_feed_list.insert(0, uniqifyCategories(user_feed_list))
     return user_feed_list
 
 def getOPMLFeeds(opmlfile):
-    """returns a List of Feeds"""
+    """returns an alpha sorted List of Feeds"""
     #TODO: this only pulls 1 level deep rss feeds right now, should be made recursive
     new_feeds = lxml.etree.fromstring(opmlfile)
     #all feeds using Feed.title as the key, value as the Feed obj
@@ -127,7 +130,6 @@ def getOPMLFeeds(opmlfile):
     feed_list.sort(key=lambda obj: obj.title.lower())
 
     #add unique list of categories in 0 place
-    #feed_list.insert(0, uniqifyCategories(feed_list))
     return feed_list
 
 def getOPMLTitle(opmlfile):
@@ -158,6 +160,4 @@ def getDemoFeeds():
     feed_list.append(Feed('Explosm.net', 'http://feeds.feedburner.com/Explosm', ['comics']))
     feed_list.append(Feed('xkcd', 'http://xkcd.com/rss.xml', ['comics']))
 
-    #add unique list of categories in 0 place
-    #feed_list.insert(0, uniqifyCategories(feed_list))
     return feed_list
