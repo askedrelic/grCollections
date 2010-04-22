@@ -22,14 +22,14 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    #'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
 INSTALLED_APPS = (
-    'django.contrib.auth',
+    #'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
+    #'django.contrib.sites',
     'devserver',
     'apps.index',
     'apps.reader',

@@ -1,8 +1,8 @@
 from django.conf.urls.defaults import *
 
 # Uncomment the next two lines to enable the admin:
-from django.contrib import admin
-admin.autodiscover()
+#from django.contrib import admin
+#admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^$', 'index.views.index'),
@@ -12,7 +12,7 @@ urlpatterns = patterns('',
 
     (r'^v/([a-zA-Z0-9]{10})$', 'reader.views.view'),
 
-    (r'^admin/(.*)', admin.site.root),
+    #(r'^admin/(.*)', admin.site.root),
 )
 
 #DEBUG Let django host static content during development.
