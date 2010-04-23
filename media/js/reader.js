@@ -7,16 +7,17 @@ var reader = function() {
     function init() {
         /* setup #userfeedlist settings, toggles */
         
-        $.map($("#userfeedlist ul li"), function (el, index) {
-            return $(el).css("border-color", border_colors3[index % border_colors3.length]);
-        });
+        //colors
+        // $.map($("#userfeedlist ul li"), function (el, index) {
+        //     return $(el).css("border-color", border_colors3[index % border_colors3.length]);
+        // });
 
         this.update_feed_count();
         this.setup_drag();
     }
     function add_new_feed(new_feed) {
         //move DOM element
-        new_feed.appendTo("#newfeedlist ul");
+        $(new_feed).appendTo("#newfeedlist ul");
         //remove drag
         new_feed.draggable('disable');
         //change styles
@@ -27,9 +28,9 @@ var reader = function() {
         //balance the height of both columns,
         //for css effects and proper DOM div heights
         if($("#userfeedlist ul").height() >= $("#newfeedlist ul").height()) {
-            $("#newfeedlist").height($("#userfeedlist ul").height());
+            $("#newfeedlist").height($("#userfeedlist ul").height() +20);
         } else {
-            $("#userfeedlist").height($("#newfeedlist ul").height());
+            $("#userfeedlist").height($("#newfeedlist ul").height() +20);
 
             //set the div height to match the ul for the drag hover
             //background
@@ -37,28 +38,51 @@ var reader = function() {
         }
     }
     function update_feed_count() {
-        $('#num_user_feeds').text($('#userfeedlist ul li').length);
+        //extra check to not count the transparent "dragging" li
+        $('#num_user_feeds').text($('#userfeedlist ul li:not([class$=ui-draggable-dragging])').length);
         $('#num_new_feeds').text($('#newfeedlist ul li').length);
     }
     function alpha_sort_feeds() {
-        //TODO: uniqify list
-        
-        //first, remove any H2 category headers
-        $('#userfeedlist ul h2').remove();
-
+        //setup useful data
         var userlist = $('#userfeedlist ul');
         var feeds = userlist.children('li').get();
+        
+        //first, remove any H2 category headers leftover from category sort
+        $('#userfeedlist ul h2').remove();
+
+        //remove dups leftover from category sort using unique index
+        var uniq_feeds = [];
+        for(feed_index in feeds) {
+            //match off url
+            var url = feeds[feed_index].children[3].innerText;
+            //if first time found, add it to unique index
+            if($.inArray(url, uniq_feeds) === -1) {
+                uniq_feeds.push(url);
+            //otherwise remove it
+            } else {
+                $(feeds[feed_index]).remove();
+            }
+        }
+
+
+        //refresh feed list that has changed
+        var feeds = userlist.children('li').get();
+
+        //sort feeds alphabetically
         feeds.sort(function(a, b) {
             var compA = $(a).text().toUpperCase();
             var compB = $(b).text().toUpperCase();
             return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
         });
         $.each(feeds, function(idx, itm) { userlist.append(itm); });
+
+        this.update_feed_count();
+        this.balance_heights();
     }
     function category_sort_feeds() {
         var userlist = $('#userfeedlist ul');
         //remove current alpha-sorted feed elements
-        userlist.children('li').remove();
+        userlist.children().remove();
         
         //loop through unique categories
         for(cat_index in reader.categories) {
@@ -104,9 +128,6 @@ var reader = function() {
     function setup_drag_handlers() {
         $("#userfeedlist ul li").draggable({
             cursorAt: { left: 80, top: 25 },
-            start: function(event, el) {
-                reader.update_feed_count();
-            },
             helper: 'clone',
             opacity: 0.50,
             revert: "invalid"
