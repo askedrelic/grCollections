@@ -131,7 +131,7 @@ def getOPMLFeeds(opmlfile):
     for feed in uncat_feeds:
         title = feed.attrib['title']
         url = feed.attrib['xmlUrl']
-        new_feed = Feed(title, url, [])
+        new_feed = Feed(title, url, ['uncategorized'])
         if title not in feed_list:
             feed_list[title] = new_feed
 
