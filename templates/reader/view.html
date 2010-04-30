@@ -10,16 +10,19 @@ viewing a feedlist
 {% endblock %}
 
 {% block content %}
-<div id="userfeedlist" class="span-24 last center">
-    hello<br/>
-    <ul>
+<div class="span-4">&nbsp;</div>
+<div class="span-16">
+    <ul id="viewing-list">
         {% for feed in user_feed_list %}
-            <li class="borders">
+            <li>
             <span class="feed-title">{{feed.title}}</span>
-            <img class="rssicon" src="/media/img/rssfavicon.gif"/><br/>
             <span class="alt">{{feed.url}}</span>
+            <a href="http://fusion.google.com/add?source=atgs&feedurl={{feed.url}}">
+                <img src="http://buttons.googlesyndication.com/fusion/add.gif" class="addicon" border="0" alt="Add to Google">
+            </a>
             </li>
         {% endfor %}
     </ul>
 </div>
+<div class="span-4 last"></div>
 {% endblock %}

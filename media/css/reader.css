@@ -103,3 +103,15 @@ html {
     vertical-align: text-top;
     float: right;
 }
+
+
+/* viewing styles */
+#viewing-list {
+    list-style-type: none;
+}
+
+.addicon {
+    float:right;
+    width: 104px;
+    height: 17px;
+}
