@@ -6,7 +6,7 @@ var reader = function() {
 
     function init() {
         /* setup #userfeedlist settings, toggles */
-        
+
         //colors
         // $.map($("#userfeedlist ul li"), function (el, index) {
         //     return $(el).css("border-color", border_colors3[index % border_colors3.length]);
@@ -15,9 +15,10 @@ var reader = function() {
         this.update_feed_count();
         this.setup_drag();
     }
-    function add_new_feed(new_feed) {
+    function add_new_feed(old_feed) {
+        var new_feed = $(old_feed).clone();
         //move DOM element
-        $(new_feed).appendTo("#newfeedlist ul");
+        new_feed.appendTo("#newfeedlist ul");
         //remove drag
         new_feed.draggable('disable');
         //change styles
@@ -46,7 +47,7 @@ var reader = function() {
         //setup useful data
         var userlist = $('#userfeedlist ul');
         var feeds = userlist.children('li').get();
-        
+
         //first, remove any H2 category headers leftover from category sort
         $('#userfeedlist ul h2').remove();
 
@@ -83,7 +84,7 @@ var reader = function() {
         var userlist = $('#userfeedlist ul');
         //remove current alpha-sorted feed elements
         userlist.children().remove();
-        
+
         //loop through unique categories
         for(cat_index in reader.categories) {
             //add category header
