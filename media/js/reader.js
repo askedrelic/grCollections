@@ -55,7 +55,7 @@ var reader = function() {
         var uniq_feeds = [];
         for(feed_index in feeds) {
             //match off url
-            var url = feeds[feed_index].children[3].innerText;
+            var url = feeds[feed_index].childNodes[3].innerHTML;
             //if first time found, add it to unique index
             if($.inArray(url, uniq_feeds) === -1) {
                 uniq_feeds.push(url);

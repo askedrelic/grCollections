@@ -45,7 +45,8 @@ html {
 }
 
 #newfeed_settings {
-    margin-top: -55px;
+    /* subtract height of left settings block to align them properly */
+    margin-top: -72px;
 }
 
 #newfeedtext {
