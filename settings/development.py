@@ -1,4 +1,5 @@
 from common import *
+from localsettings import *
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG

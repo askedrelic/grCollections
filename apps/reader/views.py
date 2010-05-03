@@ -1,5 +1,6 @@
 from django.views.generic.simple import direct_to_template
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.conf import settings
 
 from apps.reader.models import FeedList, Feed as rssFeed
 
@@ -54,6 +55,19 @@ def index(request):
     templateLocation = 'reader/index.html'
     return direct_to_template(request, templateLocation, locals())
 
+def redirect(request):
+    my_token = settings.MY_KEY
+    my_secret = settings.MY_SECRET
+    callback = "http://www.asktherelic.com:8000/share/"
+
+    auth = OAuthMethod(my_token, my_secret)
+    auth.setCallback(callback)
+    token, token_secret = auth.setAndGetRequestToken()
+
+    request.session['token'] = token
+    request.session['token_secret'] = token_secret
+    return HttpResponseRedirect(auth.buildAuthUrl())
+
 def share(request):
     """
     Take a list of rssFeeds and name, give them a unique id, and save them
@@ -73,7 +87,6 @@ def share(request):
 
     templateLocation = 'reader/share.html'
     return direct_to_template(request, templateLocation, locals())
-
 
 def view(request,urlid):
     """

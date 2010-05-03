@@ -31,11 +31,9 @@ Simple as,
 <hr class="append-bottom"/>
 
 <div class="span-12">
-    Enter your Google Reader username and password here to automatically grab your feeds.
-    <form method="POST" action="/select/">
-        <input type="text" name="username"/>
-        <input type="password" name="password"/>
-        <input type="submit" value="Grab"/>
+    Grant access to your Google Reader feeds via OAuth. 
+    <form method="GET" action="/redirect/">
+        <input type="submit" value="Go."/>
     </form>
 </div>
 <div class="span-12 last">
