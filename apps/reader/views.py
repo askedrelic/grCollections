@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 from apps.reader.models import FeedList, Feed as rssFeed
 
-from lib.libgreader import Feed, GoogleReader
+from lib.libgreader import Feed, GoogleReader, ClientAuth, OAuthMethod
 
 import lxml.etree
 import json
@@ -90,8 +90,9 @@ def view(request,urlid):
 
 def getGoogleFeeds(username, password):
     try:
-        google = GoogleReader(username, password, 'FeederReader')
-    except URLError:
+        auth = ClientAuth(username,password)
+        google = GoogleReader(auth)
+    except IOError:
         #handle username/password error
         #redirect to homepage with error?
         pass
