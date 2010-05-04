@@ -1,8 +1,6 @@
 yolk==0.4.1
 http://pypi.python.org/packages/source/p/path.py/path-2.2.zip
 
-django-debug-toolbar==0.8.3
-
 simplejson==2.1.1
 lxml==2.2.6
 
@@ -10,3 +8,6 @@ lxml==2.2.6
 Werkzeug==0.6
 sqlparse==0.1.1
 guppy==0.1.9
+
+httplib2==0.6.0
+oauth2==1.1.3
