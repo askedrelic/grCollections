@@ -22,17 +22,9 @@ def index(request):
     Receives POST request with GReader user/pass or OPML file of feeds.
     Uses either to setup list of alpha sorted feeds.
     """
+    user_feed_list = []
     if request.method == 'POST':
-        if ('username' in request.POST and request.POST['username'] and
-            'password' in request.POST and request.POST['password']):
-                #using libgreader
-                username = request.POST['username']
-                password = request.POST['password']
-                user_feed_list = getGoogleFeeds(username,password)
-                #if username is an email, don't display the domain part
-                if "@" in username:
-                    username = username.split("@")[0]
-        elif 'opmlfile' in request.FILES and request.FILES['opmlfile']:
+        if 'opmlfile' in request.FILES and request.FILES['opmlfile']:
             opmlfile = request.FILES['opmlfile'].read()
             #use OPML file
             username = getOPMLTitle(opmlfile)
@@ -44,6 +36,19 @@ def index(request):
         else:
             #error!
             pass
+    elif request.method == 'GET':
+        my_token = settings.MY_KEY
+        my_secret = settings.MY_SECRET
+        auth = OAuthMethod(my_token, my_secret)
+
+        if request.GET.get('oauth_verifier', False) and request.GET.get('oauth_token', False):
+            #try getting the token key and secret from session
+            token = request.GET['oauth_token']
+            verifier = request.GET['oauth_verifier']
+            #what is session doesn't exist?
+            secret = request.session[token]
+            auth.setAccessTokenFromCallback(token, secret, verifier)
+            user_feed_list = getGoogleFeeds(auth)
 
     #get unique categories for sorting
     json_uniq_categories = json.dumps(uniqifyCategories(user_feed_list))
@@ -58,14 +63,13 @@ def index(request):
 def redirect(request):
     my_token = settings.MY_KEY
     my_secret = settings.MY_SECRET
-    callback = "http://www.asktherelic.com:8000/share/"
+    callback = "http://localhost:8000/select/"
 
     auth = OAuthMethod(my_token, my_secret)
     auth.setCallback(callback)
     token, token_secret = auth.setAndGetRequestToken()
 
-    request.session['token'] = token
-    request.session['token_secret'] = token_secret
+    request.session[token] = token_secret
     return HttpResponseRedirect(auth.buildAuthUrl())
 
 def share(request):
@@ -101,9 +105,8 @@ def view(request,urlid):
     else:
         return HttpResponse(500)
 
-def getGoogleFeeds(username, password):
+def getGoogleFeeds(auth):
     try:
-        auth = ClientAuth(username,password)
         google = GoogleReader(auth)
     except IOError:
         #handle username/password error
